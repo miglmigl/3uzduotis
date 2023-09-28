@@ -2,13 +2,13 @@
 
 int main()
 {
-    int n;
-    cout << "Kiek tarpiniu namu darbu pazymiu vesite vienam studentui? "<<endl;
-    cin >> n;
+    //int n;
+    //cout << "Kiek tarpiniu namu darbu pazymiu vesite vienam studentui? "<<endl;
+    //cin >> n;
     int stud_sk;
     cout << "Kiek studentu yra kurse? ";
     cin >> stud_sk;
-    vector<studentas> grupe = ivesk(stud_sk, n);
+    vector<studentas> grupe = ivesk(stud_sk);//, n);
     string ats;
 
 

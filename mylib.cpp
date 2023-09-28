@@ -1,6 +1,6 @@
 #include "mylib.h"
 
-vector<studentas> ivesk(int stud_sk, int n) {
+vector<studentas> ivesk(int stud_sk /*, int n*/) {
     vector<studentas> grupe;
 
     for (int j = 0; j < stud_sk; j++) {
@@ -8,13 +8,24 @@ vector<studentas> ivesk(int stud_sk, int n) {
         cout << "Iveskite varda ir pavarde: ";
         cin >> temp.var >> temp.pav;
 
-        cout << "Iveskite namu darbu tarpinius rezultatus: ";
-        int num;
-        int count = 0;
+//        cout << "Iveskite namu darbu tarpinius rezultatus: ";
+//        int num;
+//        int count = 0;
+//
+//        while (count < n && cin >> num) {
+//            temp.paz.push_back(num);
+//            count++;
+//        }
 
-        while (count < n && cin >> num) {
+ cout << "Iveskite namu darbu pazymius (baigti su dvigubu Enter): ";
+        int num;
+        while (cin >> num) {
             temp.paz.push_back(num);
-            count++;
+            // Tikrinam ar nera dvieju enter paspaudimu
+            if (cin.get() == '\n' && temp.paz.size() > 0 && cin.peek() == '\n') {
+                cin.ignore();
+                break;
+            }
         }
 
         cout << "Iveskite egzamino rezultata: ";
