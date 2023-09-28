@@ -29,7 +29,7 @@ struct studentas{
     string line;
 };
 
-vector<studentas> ivesk(int stud_sk);
+vector<studentas> ivesk(int stud_sk, int n);
 
 
 #endif //MYLIB_H_INCLUDED
