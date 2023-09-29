@@ -2,18 +2,19 @@
 
 int main()
 {
-    //int n;
-    //cout << "Kiek tarpiniu namu darbu pazymiu vesite vienam studentui? "<<endl;
-    //cin >> n;
     int stud_sk;
+    string gen;
     cout << "Kiek studentu yra kurse? ";
     cin >> stud_sk;
-    vector<studentas> grupe = ivesk(stud_sk);//, n);
+    cout << "Norite patys vesti pazymius ir egzamino rezultata? T/N? " << endl;
+    cin >> gen;
+
+    vector<studentas> grupe = ivesk(stud_sk, gen);
     string ats;
 
 
 
-    cout<< "Noritet medianos ar vidurkio? M/V "<< endl;
+    cout<< "Norite medianos ar vidurkio? M/V "<< endl;
     cin>>ats;
 
     cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
