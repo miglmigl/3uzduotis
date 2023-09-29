@@ -1,24 +1,7 @@
 #include "mylib.h"
 
-void genPazEgz(studentas &student) {
-    // Kad kiekviena karta leidziant koda butu skirtingi sakiciai generuojami
-    srand(static_cast<unsigned>(time(nullptr)));
+void genPazEgz(studentas &student);
 
-    int n;
-    cout << "Kiek tarpiniu namu darbu pazymiu vesite siam studentui? "<<endl;
-    cin >> n;
-    // Generuojame pazymius (1-10)
-    cout << "Pazymiai:" << endl;
-    for (int i = 0; i < n; i++) {
-        student.paz.push_back((rand() % 10) + 1); // Random number between 1 and 10
-        cout << student.paz[i] << endl;
-    }
-    cout << endl;
-
-    //Generuojame egz reiksme (1-10)
-    student.egz = (rand() % 10) + 1;
-    cout << "Egzamino rezultatas: " << endl << student.egz << endl;
-}
 
 vector<studentas> ivesk(int stud_sk, string gen) {
     vector<studentas> grupe;
@@ -54,7 +37,7 @@ vector<studentas> ivesk(int stud_sk, string gen) {
         for (int i = 0; i < visipaz.size() - 1; i++) {
             suma = visipaz[i] + suma;}
 
-        temp.vid = 0.4 * (suma) / (visipaz.size() - 1) + 0.6 * temp.egz;\
+        temp.vid = 0.4 * (suma) / (visipaz.size() - 1) + 0.6 * temp.egz;
 
         sort(visipaz.begin(), visipaz.end());
         if (visipaz.size() % 2 == 0) {
@@ -64,4 +47,24 @@ vector<studentas> ivesk(int stud_sk, string gen) {
         grupe.push_back(temp);
     }
     return grupe;
+}
+
+void genPazEgz(studentas &student) {
+    // Kad kiekviena karta leidziant koda butu skirtingi sakiciai generuojami
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    int n;
+    cout << "Kiek tarpiniu namu darbu pazymiu vesite siam studentui? "<<endl;
+    cin >> n;
+    // Generuojame pazymius (1-10)
+    cout << "Pazymiai:" << endl;
+    for (int i = 0; i < n; i++) {
+        student.paz.push_back((rand() % 10) + 1); // Random number between 1 and 10
+        cout << student.paz[i] << endl;
+    }
+    cout << endl;
+
+    //Generuojame egz reiksme (1-10)
+    student.egz = (rand() % 10) + 1;
+    cout << "Egzamino rezultatas: " << endl << student.egz << endl;
 }
