@@ -1,5 +1,6 @@
 #include "mylib.h"
 
+
 void genPazEgz(studentas &student)
 {
     // Kad kiekviena karta leidziant koda butu skirtingi sakiciai generuojami
