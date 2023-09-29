@@ -11,6 +11,7 @@
 #include <random>
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 
 //using std::cout;
 //using std::cin;
@@ -22,19 +23,19 @@
 //using std::left;
 //using std::right;
 //using std::setprecision;
-//using std:: rand;
+//using std:: rand;*/
+
 using namespace std;
 
-struct studentas{
-    string var, pav;
-    vector <int> paz;
-    int egz;
-    float vid;
-    float med;
-    string line;
-};
-
-
+struct studentas
+    {
+        string var, pav;
+        vector <int> paz;
+        int egz;
+        float vid;
+        float med;
+        string line;
+    };
 
 
 vector<studentas> ivesk(int stud_sk, string gen);
