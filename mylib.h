@@ -12,18 +12,7 @@
 #include <cstdlib>
 #include <ctime>
 #include <fstream>
-
-//using std::cout;
-//using std::cin;
-//using std::string;
-//using std::endl;
-//using std::vector;
-//using std::setw;
-//using std::fixed;
-//using std::left;
-//using std::right;
-//using std::setprecision;
-//using std:: rand;*/
+#include <cctype>
 
 using namespace std;
 
@@ -34,12 +23,13 @@ struct studentas
         int egz;
         float vid;
         float med;
-        string line;
     };
 
 
 vector<studentas> ivesk(int stud_sk, string gen);
 void genPazEgz(studentas &student);
+void isvedimas(vector<studentas> &grupe, string gen, string ats);
+void pal_pav(vector<studentas> &grupe);
 
 
 #endif //MYLIB_H_INCLUDED
