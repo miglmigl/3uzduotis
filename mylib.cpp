@@ -1,6 +1,8 @@
 #include "mylib.h"
 
 
+        // Pazymiu ir egzamino rezultato generavimo funkcija
+
 void genPazEgz(studentas &student)
 {
     // Kad kiekviena karta leidziant koda butu skirtingi sakiciai generuojami
@@ -9,11 +11,12 @@ void genPazEgz(studentas &student)
     int n;
     cout << "Kiek tarpiniu namu darbu pazymiu vesate siam studentui? " << endl;
     cin >> n;
+
     // Generuojame pazymius (1-10)
     cout << "Pazymiai:";
     for (int i = 0; i < n; i++)
         {
-            student.paz.push_back((rand() % 10) + 1);
+            student.paz.push_back((rand() % 10) + 1); //Dedam pazymi i vektoriu
             cout << setw(3) << student.paz[i];
         }
     cout << endl;
@@ -26,9 +29,12 @@ void genPazEgz(studentas &student)
 
 
 
+            // Vidurkio ir medianos skaiciavimo funkcija
 
 void skaiciavimas(vector<studentas> &grupe, studentas &temp)
 {
+
+    // Skaiciuojame vidurki
     double suma = 0;
     for (int i = 0; i < temp.paz.size(); i++)
         {
@@ -37,9 +43,12 @@ void skaiciavimas(vector<studentas> &grupe, studentas &temp)
 
     temp.vid = 0.4 * (suma / temp.paz.size()) + 0.6 * temp.egz;
 
+    // Sukuriame vektoriu su visais gautais pazymiais ir egzaminu
     vector<int> visipaz = temp.paz;
     visipaz.push_back(temp.egz);
 
+
+    //Skaiciuojame mediana
     double med = 0.0;
     sort(visipaz.begin(), visipaz.end());
     if (visipaz.size() % 2 == 0)
@@ -59,10 +68,12 @@ void skaiciavimas(vector<studentas> &grupe, studentas &temp)
 
 
 
+        //Rikiavimo pagal pavardes funkcija
 
-bool palyginimas(studentas &a, studentas &b) {
+bool palyginimas(studentas &a, studentas &b)
+    {
     return a.pav < b.pav;
-}
+    }
 // Pavardziu lyginimo funkcija
 void pal_pav(vector<studentas> &grupe) {
     sort(grupe.begin(), grupe.end(), palyginimas);
@@ -71,16 +82,22 @@ void pal_pav(vector<studentas> &grupe) {
 
 
 
+// Iskvieciama funkcija "ivesk", kuri kaip argumentus ima "stud_sk" ir "gen" kintamuosius
+//ir grazina vektoriu sudaryta is objektu "studentas"
 
 vector<studentas> ivesk(int stud_sk, string gen) {
     vector<studentas> grupe;
+
+// Vykdomos visos galimos ivestys
 if(gen =="T" || gen == "G")
     {
+        // For ciklas vykdomas tiek kartu, kiek yra ivedama studentu
     for (int j = 0; j < stud_sk; j++)
         {
         studentas temp;
         cout << "Iveskite varda ir pavarde: ";
         cin >> temp.var >> temp.pav;
+
 
         if (gen == "T")
             {
@@ -88,10 +105,10 @@ if(gen =="T" || gen == "G")
             int num;
             while (cin >> num)
                 {
-                    temp.paz.push_back(num);
-                    if (cin.get() == '\n' && temp.paz.size() > 0 && cin.peek() == '\n')
+                    temp.paz.push_back(num); // pridedame ivesta pazimi i vektoriu, kuriame bus irasomi visi pazymiai
+                    if (cin.get() == '\n' && temp.paz.size() > 0 && cin.peek() == '\n') // Tikrinama ar baigiama ivestis (Enter paspaudzaima 2 kartus)
                         {
-                            cin.ignore();
+                            cin.ignore(); // Su sia eilute ignoruojami ivesti naujos eilutes simboliai (Enter)
                             break;
                         }
                 }
@@ -101,17 +118,21 @@ if(gen =="T" || gen == "G")
 
         else if (gen == "G")
             {
-            genPazEgz(temp);
+            genPazEgz(temp); //Iskvieciame pazymiu generavimo funkcija
             }
 
-        skaiciavimas(grupe, temp);
+        skaiciavimas(grupe, temp); // Iskvieciame vidurkio ir medianos skaiciavimo funkcija
         }
     }
 
 
+// Vykdoma si dalis, jei pasirenkama duomenis skaityti is failo (F)
 else if (gen == "F")
     {
-    ifstream in("kursiokai.txt");
+    string failo_pav;
+    cout << "Iveskite failo, kuri norite nuskaityti pavadinima (formatas: pavadinimas.txt)";
+    cin >> failo_pav;
+    ifstream in(failo_pav); // Atidaromas ivesties failas
 
     // Praleidziame pirma eilute su stulpeliu pavadinimais
     string pavadinimas;
@@ -134,7 +155,6 @@ else if (gen == "F")
     paz_sk =(raidziu_sk -6-7-3)/2;
 
 
-
     studentas temp;
     int laik_kint;
     while (in >> temp.var >> temp.pav)
@@ -152,7 +172,6 @@ else if (gen == "F")
             //Iskvieciame vidurkio ir medijanos sakiciavimo funkcija
             skaiciavimas(grupe, temp);
         }
-
     in.close();
     }
     return grupe;
@@ -161,11 +180,11 @@ else if (gen == "F")
 
 
 
+        //Isvedimo funkcija
 
 void isvedimas(vector<studentas> &grupe, string gen, string ats) {
     if (gen == "T" || gen == "G")
         {
-
             // Rusiuojame pagal pavardes
             pal_pav(grupe);
 
@@ -173,17 +192,17 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats) {
         if (ats == "M") {
             cout << "Galutinis (Med.)" << endl;
             cout << "--------------------------------------------------------\n";
+
             for (auto &a : grupe) {
                 cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.med << endl;
             }
         } else if (ats == "V") {
             cout << "Galutinis (Vid.)" << endl;
             cout << "--------------------------------------------------------\n";
+            // Imame po elementa is "grupe" vektoriaus (po studenta)
             for (auto &a : grupe) {
                 cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid << endl;
             }
-        } else {
-            cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNeteisinga ivestis" << endl;
         }
     } else if (gen == "F") {
          ofstream out ("rezultatai.txt");
@@ -196,13 +215,10 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats) {
         for (auto &a : grupe) {
 
             out << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid << setw(20) << fixed << setprecision(2) << a.med << endl;
-
         }
         out.close();
         cout << "Isvesti duomenys irasyti i faila 'rezultatai.txt' "<< endl;
-
     }
-
 }
 
 

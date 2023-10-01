@@ -13,9 +13,9 @@
 #include <ctime>
 #include <fstream>
 #include <cctype>
+#include <stdexcept>
 
 using namespace std;
-
 struct studentas
     {
         string var, pav;
@@ -25,12 +25,10 @@ struct studentas
         float med;
     };
 
-
 vector<studentas> ivesk(int stud_sk, string gen);
 void genPazEgz(studentas &student);
 void isvedimas(vector<studentas> &grupe, string gen, string ats);
 void pal_pav(vector<studentas> &grupe);
-
 
 #endif //MYLIB_H_INCLUDED
 
