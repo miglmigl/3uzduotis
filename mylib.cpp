@@ -1,5 +1,18 @@
 #include "mylib.h"
 
+void padalinto_sapuzdinimas(const std::vector<int>& students, const std::string& filename) {
+    std::ofstream out(filename);
+    if (out.is_open()) {
+        for (int studentIndex : students) {
+            out << "Vardas" << studentIndex << " Pavarde" << studentIndex << "\n";
+        }
+        out.close();
+    } else {
+        std::cerr << "Failed to open " << filename << " for writing." << std::endl;
+    }
+}
+
+
 
         /// Pazymiu ir egzamino rezultato generavimo funkcija
 
@@ -15,22 +28,44 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd)
     {
          out<< setw(7) << "ND"+to_string(m);
     }
-   out << setw(10) << "Egz.\n\n";
+   out << setw(10) << "Egz.";
+   out << setw(15) << "Galutinis\n\n";
+
+    vector<int> kietiakai;
+    vector<int> vargsiukai;
 
     for (int i = 1; i <= stud_gen_sk; i++)
     {
         out << setw(20) << "Vardas" + to_string(i) << setw(20) << "Pavarde" + to_string(i);
-
+        double suma = 0;
         for (int j = 0; j < stud_gen_nd; j++) {
             laikinas=(rand() % 10) + 1; // Dedam pazymi i vektoriu (Cia ima atsitiktinius sveikus sakicius daliname is 10, imame liekana (ji bus 0-9, pridedame 1) )
             out << setw(7) << laikinas;
+            suma += laikinas;
         }
+
+
+
+
+        double galutinis = 0;
         laikinas = (rand() % 10) + 1;
-        out << setw(7) << laikinas<< endl;
-        out << endl;
+        out << setw(7) << laikinas;
+        galutinis = 0.4*(suma/stud_gen_nd) + 0.6*laikinas;
+        if (galutinis >= 5)
+        {
+            kietiakai.push_back(i);
+        }
+        else
+        {
+            vargsiukai.push_back(i);
+        }
+        out << setw(15) << fixed << setprecision(2) << galutinis << endl;
     }
     out.close();
     cout << "Duomenys irasyti i faila 'Kursiokai"<< stud_gen_sk <<".txt'";
+        // Spauzdinami kietiakai ir vargsiukai i failus
+    padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");
+    padalinto_sapuzdinimas(vargsiukai, "vargsiukai.txt");
 }
 
 
@@ -130,17 +165,6 @@ if(gen =="T")
         }
     }
 
-    /*else if (gen=="G")
-    {
-        studentas temp;
-        int stud_gen_sk, stud_gen_nd;
-        cout << "Kiek studentu bus jusu generuojamame faile?";
-        cin >> stud_gen_sk;
-        cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?";
-        cin >> stud_gen_nd;
-
-        genPazEgz(temp, stud_gen_sk, stud_gen_nd);
-    }*/
 
 
 // Vykdoma si dalis, jei pasirenkama duomenis skaityti is failo (F)
