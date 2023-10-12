@@ -1,67 +1,77 @@
+
+
 #include "mylib.h"
 
-void padalinto_sapuzdinimas(vector<int>& studentai, string&& failo_pav) {
-   ofstream out(failo_pav);
-        for (int a : studentai) {
-            out << "Vardas" << a << " Pavarde" << a << "\n";
-        }
-        out.close();
+
+        //Spauzdinimo funkcija vargsiuku ir kietiaku failams
+void padalinto_sapuzdinimas(const vector<studentas_padalinimui>& studentai, const string& failo_pav) {
+    ofstream out(failo_pav);
+    out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis" << endl;
+    out << endl;
+
+    for (const auto& stud : studentai) {
+        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.vid << endl;
+    }
+
+    out.close();
+    cout << "Duomenys įrašyti į failą '" << failo_pav << "'" << endl;
 }
 
 
-
-        /// Pazymiu ir egzamino rezultato generavimo funkcija
-
-void gen_failas(int stud_gen_sk, int stud_gen_nd)
-{
-    int laikinas;
-    // Kad kiekviena karta leidziant koda butu skirtingi sakaiciai generuojami
+        //Failo generavimas, suskirstymas i vargsiukus ir kietiakus
+void gen_failas(int stud_gen_sk, int stud_gen_nd) {
     srand(static_cast<unsigned>(time(nullptr)));
 
-    ofstream out ("Kursiokai"+to_string(stud_gen_sk)+".txt");
-    out<< setw(20) << "Vardas"<< setw(20) << "Pavarde";
-    for (int m=1; m <= stud_gen_nd; m++)
-    {
-         out<< setw(7) << "ND"+to_string(m);
+    vector<studentas_padalinimui> studentai;
+    vector<studentas_padalinimui> kietiakai;
+    vector<studentas_padalinimui> vargsiukai;
+
+    ofstream out("Kursiokai" + to_string(stud_gen_sk) + ".txt");
+    out << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
+
+    for (int m = 1; m <= stud_gen_nd; m++) {
+        out << setw(7) << "ND" + to_string(m);
     }
-   out << setw(10) << "Egz.";
-   out << setw(15) << "Galutinis\n\n";
 
-    vector<int> kietiakai;
-    vector<int> vargsiukai;
+    out << setw(7) << "Egz." << setw(15) << "Galutinis" << endl;
+    out << endl;
 
-    for (int i = 1; i <= stud_gen_sk; i++)
-    {
-        out << setw(20) << "Vardas" + to_string(i) << setw(20) << "Pavarde" + to_string(i);
+    for (int i = 1; i <= stud_gen_sk; i++) {
+        studentas_padalinimui stud;
+        stud.var = "Vardas" + to_string(i);
+        stud.pav = "Pavarde" + to_string(i);
+        out << left << setw(20) << stud.var << setw(20) << stud.pav;
+        stud.egz = (rand() % 10) + 1;
+
         double suma = 0;
+
         for (int j = 0; j < stud_gen_nd; j++) {
-            laikinas=(rand() % 10) + 1; // Dedam pazymi i vektoriu (Cia ima atsitiktinius sveikus sakicius daliname is 10, imame liekana (ji bus 0-9, pridedame 1) )
-            out << setw(7) << laikinas;
-            suma += laikinas;
+            int pazymys = (rand() % 10) + 1;
+            stud.paz.push_back(pazymys);
+            suma += pazymys;
+
+            out << setw(7) << pazymys;
         }
 
+        stud.vid = 0.4 * (suma / stud_gen_nd) + 0.6 * stud.egz;
+        out << setw(7) << stud.egz;
+        out << setw(15) << fixed << setprecision(2) << stud.vid << endl;
 
-        double galutinis = 0;
-        laikinas = (rand() % 10) + 1;
-        out << setw(7) << laikinas;
-        galutinis = 0.4*(suma/stud_gen_nd) + 0.6*laikinas;
-        if (galutinis >= 5)
-        {
-            kietiakai.push_back(i);
+        studentai.push_back(stud);
+
+        if (stud.vid >= 5) {
+            kietiakai.push_back(stud);
         }
-        else
-        {
-            vargsiukai.push_back(i);
+        else {
+            vargsiukai.push_back(stud);
         }
-        out << setw(15) << fixed << setprecision(2) << galutinis << endl;
     }
-    out.close();
-    cout << "Duomenys irasyti i faila 'Kursiokai"<< stud_gen_sk <<".txt'";
-        // Spauzdinami kietiakai ir vargsiukai i failus
+
     padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");
     padalinto_sapuzdinimas(vargsiukai, "vargsiukai.txt");
+    out.close();
+    cout << "Duomenys irasyti i faila 'Kursiokai" << stud_gen_sk << ".txt'" << endl;
 }
-
 
 
 
