@@ -39,7 +39,7 @@ int main() {
         int stud_gen_sk, stud_gen_nd;
         cout << "Kiek studentu bus jusu generuojamame faile?\n";
         cin >> stud_gen_sk;
-        cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?\n";
+        cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?";
         cin >> stud_gen_nd;
 
             gen_failas(stud_gen_sk, stud_gen_nd);
