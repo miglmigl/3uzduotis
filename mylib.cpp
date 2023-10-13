@@ -1,16 +1,25 @@
-
-
 #include "mylib.h"
+
+void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, vector<studentas>& vargsiukai) {
+
+    for (auto &a: grupe) {
+        if (a.balasv >= 5) {
+            kietiakai.push_back(a);
+        } else {
+            vargsiukai.push_back(a);
+        }
+    }
+}
 
 
         //Spauzdinimo funkcija vargsiuku ir kietiaku failams
-void padalinto_sapuzdinimas(const vector<studentas_padalinimui>& studentai, const string& failo_pav) {
+void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& failo_pav) {
     ofstream out(failo_pav);
     out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis" << endl;
     out << endl;
 
     for (const auto& stud : studentai) {
-        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.vid << endl;
+        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.balasv << endl;
     }
 
     out.close();
@@ -18,13 +27,11 @@ void padalinto_sapuzdinimas(const vector<studentas_padalinimui>& studentai, cons
 }
 
 
-        //Failo generavimas, suskirstymas i vargsiukus ir kietiakus
+        //Failo generavimas
 void gen_failas(int stud_gen_sk, int stud_gen_nd) {
     srand(static_cast<unsigned>(time(nullptr)));
 
-    vector<studentas_padalinimui> studentai;
-    vector<studentas_padalinimui> kietiakai;
-    vector<studentas_padalinimui> vargsiukai;
+    vector<studentas> studentai;
 
     ofstream out("Kursiokai" + to_string(stud_gen_sk) + ".txt");
     out << left << setw(20) << "Vardas" << setw(20) << "Pavarde";
@@ -33,11 +40,11 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
         out << setw(7) << "ND" + to_string(m);
     }
 
-    out << setw(7) << "Egz." << setw(15) << "Galutinis" << endl;
+    out << setw(7) << "Egz." << setw(15) << endl;
     out << endl;
 
     for (int i = 1; i <= stud_gen_sk; i++) {
-        studentas_padalinimui stud;
+        studentas stud;
         stud.var = "Vardas" + to_string(i);
         stud.pav = "Pavarde" + to_string(i);
         out << left << setw(20) << stud.var << setw(20) << stud.pav;
@@ -53,25 +60,14 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
             out << setw(7) << pazymys;
         }
 
-        stud.vid = 0.4 * (suma / stud_gen_nd) + 0.6 * stud.egz;
-        out << setw(7) << stud.egz;
-        out << setw(15) << fixed << setprecision(2) << stud.vid << endl;
-
-        studentai.push_back(stud);
-
-        if (stud.vid >= 5) {
-            kietiakai.push_back(stud);
-        }
-        else {
-            vargsiukai.push_back(stud);
-        }
+        out << setw(7) << stud.egz<< endl;
     }
 
-    padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");
-    padalinto_sapuzdinimas(vargsiukai, "vargsiukai.txt");
+
     out.close();
-    cout << "Duomenys irasyti i faila 'Kursiokai" << stud_gen_sk << ".txt'" << endl;
+
 }
+
 
 
 
@@ -116,17 +112,53 @@ void skaiciavimas(vector<studentas> &grupe, studentas &temp)
 
 
 
-        //Rikiavimo pagal pavardes funkcija
 
-bool palyginimas(studentas &a, studentas &b)
-    {
-    return a.pav < b.pav;
+
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, vector<studentas> &grupe) {
+
+    temp.vid = static_cast<float>(suma)/paz_sk;
+
+
+    // Mediana
+    sort(temp.paz.begin(), temp.paz.end());
+
+    double mediana = 0.0;
+    int dydis = temp.paz.size();
+    if (dydis % 2 == 0) {
+        temp.med = static_cast<double>(temp.paz[(dydis - 1) / 2] + temp.paz[dydis / 2]) / 2.0;
+    } else {
+        temp.med = temp.paz[dydis / 2];
     }
-// Pavardziu lyginimo funkcija
-void pal_pav(vector<studentas> &grupe) {
-    sort(grupe.begin(), grupe.end(), palyginimas);
+
+    //Skaiciuojam galutinius balus
+    temp.balasv = static_cast<float>(temp.vid*0.4 + temp.egz*0.6);
+
+
+    grupe.push_back(temp);
+    temp.paz.clear();
+    suma = 0;
 }
 
+
+bool palyginimas(studentas &a, studentas &b, string rus_index) {
+    if (rus_index == "P") {
+        return a.pav < b.pav;
+    } else if (rus_index == "V") {
+        return a.var < b.var;
+    } else if (rus_index == "G") {
+        return a.balasv < b.balasv;
+    } else {
+        // Automatinis nustatymas, kai rus_index neatpazintas
+        return false;
+    }
+}
+
+
+void pal_pav(vector<studentas> &grupe, string rus_index) {
+    sort(grupe.begin(), grupe.end(), [rus_index](studentas &a, studentas &b) {
+        return palyginimas(a, b, rus_index);
+    });
+}
 
 
 
@@ -169,70 +201,69 @@ if(gen =="T")
         }
     }
 
-
-
-// Vykdoma si dalis, jei pasirenkama duomenis skaityti is failo (F)
-else if (gen == "F")
-    {
-        system("dir *.txt");
-    string failo_pav;
-    cout << "Iveskite failo, kuri norite nuskaityti pavadinima (formatas: pavadinimas.txt)";
-    cin >> failo_pav;
-    ifstream in(failo_pav); // Atidaromas ivesties failas
-
-    // Praleidziame pirma eilute su stulpeliu pavadinimais
-    string pavadinimas;
-    getline(in, pavadinimas);
-
-
-    int raidziu_sk = 0;
-    //Susirandame kiek raidziu yra pirmoje eiluteje
-    for (char ch : pavadinimas)
-    {
-        if (isalpha(ch))
-            {
-                raidziu_sk++;
-            }
-    }
-
-    double paz_sk;
-    // Atimame "Vardas", "Pavarde", "Egz" raides ir padalinam is 2, nes "ND" yra 2 raides
-    //Taip suskaiciuojame kiek tarpiniu namu darbu pazymiu yra vienam studentui
-    paz_sk =(raidziu_sk -6-7-3)/2;
-
-
-    studentas temp;
-    int laik_kint;
-    while (in >> temp.var >> temp.pav)
-        {
-            //Istrina buvusias temp.paz vertes
-            temp.paz.clear();
-            //Nuskaitome is eiles einancius namu darbu pazymius
-            for (int i = 0; i < paz_sk; i++)
-                {
-                in >> laik_kint;
-                temp.paz.push_back(laik_kint);
-                }
-            //Nuskaitome egzmaino rezultata
-            in >> temp.egz;
-            //Iskvieciame vidurkio ir medijanos sakiciavimo funkcija
-            skaiciavimas(grupe, temp);
-        }
-    in.close();
-    }
     return grupe;
 }
 
 
 
 
+
+
+void nuskaitymas(const std::string& failas, std::vector<studentas>& grupe) {
+    std::ifstream in(failas);
+    if (!in.is_open()) {
+        std::cerr << "Klaida: Failas nerastas." << std::endl;
+        return;
+    }
+
+    string pavadinimas, praleidziam;
+    getline(in, pavadinimas);
+    studentas temp;
+    int laik_kint, suma = 0, m = 0;
+    double paz_sk = 0;
+    int raidziu_sk = 0;
+    for (char ch : pavadinimas) {
+        if (isalpha(ch)) {
+            raidziu_sk++;
+        }
+    }
+
+    paz_sk = (raidziu_sk - 6 - 7 - 3) / 2;
+
+
+    while (in >> temp.var >> temp.pav) {
+
+        for (int i = 0; i < paz_sk; i++) {
+        in >> laik_kint;
+            temp.paz.push_back(laik_kint);
+            suma+=laik_kint;
+        }
+
+    in >> temp.egz;
+    getline(in, praleidziam);
+        // Process the data, for example, by calling the "skaiciavimas" function
+        skaiciavimas_2(suma,paz_sk,temp,grupe);
+        m++;
+    }
+
+    in.close();
+}
+
+
+
+
+
+
+
+
+
         //Isvedimo funkcija
 
-void isvedimas(vector<studentas> &grupe, string gen, string ats) {
-    if (gen == "T" /*|| gen == "G"*/)
+void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index) {
+    if (gen == "T")
         {
             // Rusiuojame pagal pavardes
-            pal_pav(grupe);
+            pal_pav(grupe,"P");
 
         cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
         if (ats == "M") {
@@ -255,16 +286,13 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats) {
         out << "-----------------------------------------------------------------------\n";
 
         // Rusiuojame pagal pavardes
-        pal_pav(grupe);
+        pal_pav(grupe,rus_index );
 
         for (auto &a : grupe) {
 
-            out << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid << setw(20) << fixed << setprecision(2) << a.med << endl;
+            out << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.balasv << setw(20) << fixed << setprecision(2) << a.med << endl;
         }
         out.close();
         cout << "Isvesti duomenys irasyti i faila 'rezultatai.txt' "<< endl;
     }
 }
-
-
-

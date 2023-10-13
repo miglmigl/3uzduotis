@@ -14,6 +14,7 @@
 #include <fstream>
 #include <cctype>
 #include <stdexcept>
+#include <chrono>
 
 using namespace std;
 struct studentas
@@ -23,22 +24,16 @@ struct studentas
         int egz;
         float vid;
         float med;
+        float balasv;
     };
-
-struct studentas_padalinimui
-{
-    string var, pav;
-    vector<int> paz;
-    int egz;
-    float vid;
-};
 
 
 vector<studentas> ivesk(int stud_sk, string gen);
-void isvedimas(vector<studentas> &grupe, string gen, string ats);
+void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index);
 void pal_pav(vector<studentas> &grupe);
 void gen_failas(int stud_gen_sk, int stud_gen_nd);
-void padalinto_sapuzdinimas(vector<studentas_padalinimui>& studentai, string& failo_pav);
-
+void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& failo_pav);
+void nuskaitymas(const std::string& failas, std::vector<studentas>& grupe);
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, vector<studentas> &grupe);
+void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, vector<studentas>& vargsiukai);
 #endif //MYLIB_H_INCLUDED
-

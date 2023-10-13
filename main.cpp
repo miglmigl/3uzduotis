@@ -1,5 +1,4 @@
 
-
 #include "mylib.h"
 
 int main() {
@@ -7,6 +6,7 @@ int main() {
     string gen;
     vector<studentas> grupe; // sukuriame tuscia vektoriu, pavadinta "grupe", kuris saugos objektus "studentas"
     string ats;
+    string rus_index;
 
     while (true) {
         try {
@@ -30,8 +30,10 @@ int main() {
 
             if (ats != "M" && ats != "V") {
                 cerr << "Klaida: Neteisinga ivestis. Pasirinkite M arba V." << endl;
+
             }
         }
+        isvedimas(grupe, gen, ats,rus_index);
     }
      else if (gen == "G")
      {
@@ -39,21 +41,43 @@ int main() {
         int stud_gen_sk, stud_gen_nd;
         cout << "Kiek studentu bus jusu generuojamame faile?\n";
         cin >> stud_gen_sk;
-        cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?";
+        cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?\n";
         cin >> stud_gen_nd;
+                        auto start = std::chrono::high_resolution_clock::now();
+                gen_failas(stud_gen_sk, stud_gen_nd);
+                auto end = std::chrono::high_resolution_clock::now();
+                std::chrono::duration<double> diff = end - start;
+        cout << " Studentu failo 'Kursiokai"<<to_string(stud_gen_sk)<<".txt' generavimas uztruko: "<< diff.count() << " s;" << endl;
 
-            gen_failas(stud_gen_sk, stud_gen_nd);
+
+            cout << "Duomenys irasyti i faila 'Kursiokai" << stud_gen_sk << ".txt'" << endl;
+
      }
 
 
 
     else if (gen == "F") {
-                stud_sk = 0;
-                grupe = ivesk(stud_sk, gen);
+    string failas;
+    system("dir *.txt");
+    cout << "Iveskite failo, kuri norite nuskaityti pavadinima (formatas: pavadinimas.txt): ";
+    cin >> failas;
+
+
+    nuskaitymas(failas, grupe);
+            vector<studentas> vargsiukai;
+       vector<studentas> kietiakai;
+       padalinimas(grupe, kietiakai, vargsiukai);
+       padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");
+        padalinto_sapuzdinimas(vargsiukai, "vargsiukai.txt");
+cout << "Pagal ka noresite rusiuoti rezultatus: P - pavardes, V - vardus, G - galutini bala?/n";
+cin >> rus_index;
+            //Isvedame duomenis
+            isvedimas(grupe, gen, ats,rus_index);
             }
 
-            //Isvedame duomenis
-            isvedimas(grupe, gen, ats);
+
+
+
 
             break; // Iseiname is ciklo, jei nesugavome nieko su "try"
         }
@@ -64,4 +88,3 @@ int main() {
     }
     return 0;
 }
-
