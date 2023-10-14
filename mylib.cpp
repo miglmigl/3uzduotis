@@ -1,9 +1,43 @@
 #include "mylib.h"
 
+
+
+
+
+
+int kiek_sk(const string& failas) {
+    int kiekis = 0;
+    string numberPart;
+    bool rastas_sk = false;
+
+    for (char c : failas) {
+        if (rastas_sk) {
+            if (std::isdigit(c)) {
+                numberPart += c;
+            } else {
+                break;  // Stop after encountering non-digit characters
+            }
+        } else if (std::isdigit(c)) {
+            rastas_sk = true;
+            numberPart += c;
+        }
+    }
+
+    if (!numberPart.empty()) {
+        // Convert the collected number part to an integer
+        std::istringstream(numberPart) >> kiekis;
+    }
+
+    return kiekis;
+}
+
+
+
+
 void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, vector<studentas>& vargsiukai) {
 
     for (auto &a: grupe) {
-        if (a.balasv >= 5) {
+        if (a.galutinis >= 5) {
             kietiakai.push_back(a);
         } else {
             vargsiukai.push_back(a);
@@ -19,11 +53,11 @@ void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& fa
     out << endl;
 
     for (const auto& stud : studentai) {
-        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.balasv << endl;
+        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.galutinis << endl;
     }
 
     out.close();
-    cout << "Duomenys įrašyti į failą '" << failo_pav << "'" << endl;
+    //cout << "Duomenys įrašyti į failą '" << failo_pav << "'" << endl;
 }
 
 
@@ -59,13 +93,9 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
 
             out << setw(7) << pazymys;
         }
-
         out << setw(7) << stud.egz<< endl;
     }
-
-
     out.close();
-
 }
 
 
@@ -131,7 +161,7 @@ void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, vector<studentas> &g
     }
 
     //Skaiciuojam galutinius balus
-    temp.balasv = static_cast<float>(temp.vid*0.4 + temp.egz*0.6);
+    temp.galutinis = static_cast<float>(temp.vid*0.4 + temp.egz*0.6);
 
 
     grupe.push_back(temp);
@@ -146,7 +176,7 @@ bool palyginimas(studentas &a, studentas &b, string rus_index) {
     } else if (rus_index == "V") {
         return a.var < b.var;
     } else if (rus_index == "G") {
-        return a.balasv < b.balasv;
+        return a.galutinis < b.galutinis;
     } else {
         // Automatinis nustatymas, kai rus_index neatpazintas
         return false;
@@ -290,9 +320,9 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index
 
         for (auto &a : grupe) {
 
-            out << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.balasv << setw(20) << fixed << setprecision(2) << a.med << endl;
+            out << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.galutinis << setw(20) << fixed << setprecision(2) << a.med << endl;
         }
         out.close();
-        cout << "Isvesti duomenys irasyti i faila 'rezultatai.txt' "<< endl;
+        //cout << "Isvesti duomenys irasyti i faila 'rezultatai.txt' "<< endl;
     }
 }
