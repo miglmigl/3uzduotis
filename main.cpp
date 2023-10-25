@@ -66,6 +66,11 @@ int main() {
 
         int kiekis = kiek_sk(failas);
 
+        for (int i = 0; i < 5; i++){
+
+                cout<<endl<<endl;
+                cout << i+1 << " nuskaitymas"<<endl;
+
         auto Nuskaitymo_start = chrono::high_resolution_clock::now();
         nuskaitymas(failas, grupe);
         auto Nuskaitymo_end = chrono::high_resolution_clock::now();
@@ -104,7 +109,7 @@ int main() {
 
         float visas_laikas = Nuskaitymo_laikas.count() + Rusiavimas_laikas.count() + Padalinimo_laikas.count() + Kietiaku_sp_laikas.count() + Vargsiuku_sp_laikas.count();
         cout <<kiekis<<" irasu testo laikas: "<< visas_laikas << " s;" << endl;
-
+        }
 
 
             //Isvedame duomenis

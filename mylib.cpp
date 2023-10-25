@@ -2,9 +2,6 @@
 
 
 
-
-
-
 int kiek_sk(const string& failas) {
     int kiekis = 0;
     string numberPart;
@@ -14,17 +11,19 @@ int kiek_sk(const string& failas) {
         if (rastas_sk) {
             if (std::isdigit(c)) {
                 numberPart += c;
-            } else {
-                break;  // Stop after encountering non-digit characters
             }
-        } else if (std::isdigit(c)) {
+            else {
+                break;  // Sustoja kai suranda ne skaiciu
+            }
+        }
+        else if (std::isdigit(c)) {
             rastas_sk = true;
             numberPart += c;
         }
     }
 
     if (!numberPart.empty()) {
-        // Convert the collected number part to an integer
+        // Surinktas skaicius is eilutes paverciamas i sveikajo skaiciu
         std::istringstream(numberPart) >> kiekis;
     }
 
@@ -46,7 +45,7 @@ void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, ve
 }
 
 
-        //Spauzdinimo funkcija vargsiuku ir kietiaku failams
+        ///Spauzdinimo funkcija vargsiuku ir kietiaku failams
 void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& failo_pav) {
     ofstream out(failo_pav);
     out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis" << endl;
@@ -61,9 +60,11 @@ void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& fa
 }
 
 
-        //Failo generavimas
+        ///Failo generavimas
 void gen_failas(int stud_gen_sk, int stud_gen_nd) {
-    srand(static_cast<unsigned>(time(nullptr)));
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> rand_score(1, 10);
 
     vector<studentas> studentai;
 
@@ -82,12 +83,12 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
         stud.var = "Vardas" + to_string(i);
         stud.pav = "Pavarde" + to_string(i);
         out << left << setw(20) << stud.var << setw(20) << stud.pav;
-        stud.egz = (rand() % 10) + 1;
+        stud.egz = rand_score(gen);
 
         double suma = 0;
 
         for (int j = 0; j < stud_gen_nd; j++) {
-            int pazymys = (rand() % 10) + 1;
+            int pazymys = rand_score(gen);
             stud.paz.push_back(pazymys);
             suma += pazymys;
 
@@ -103,7 +104,7 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
 
 
 
-            // Vidurkio ir medianos skaiciavimo funkcija
+            /// Vidurkio ir medianos skaiciavimo funkcija
 
 void skaiciavimas(vector<studentas> &grupe, studentas &temp)
 {
@@ -170,6 +171,7 @@ void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, vector<studentas> &g
 }
 
 
+            ///Palyginimas pagal P, V arba G
 bool palyginimas(studentas &a, studentas &b, string rus_index) {
     if (rus_index == "P") {
         return a.pav < b.pav;
@@ -189,6 +191,7 @@ void pal_pav(vector<studentas> &grupe, string rus_index) {
         return palyginimas(a, b, rus_index);
     });
 }
+
 
 
 
@@ -287,7 +290,7 @@ void nuskaitymas(const std::string& failas, std::vector<studentas>& grupe) {
 
 
 
-        //Isvedimo funkcija
+        ///Isvedimo funkcija
 
 void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index) {
     if (gen == "T")
