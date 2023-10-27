@@ -141,7 +141,7 @@ int main() {
 
 
 
-/*
+
 /// Su list<studentas>
 
 
@@ -179,6 +179,7 @@ int main() {
         }
         //isvedimas(grupe, gen, ats,rus_index);
     }
+
      else if (gen == "G")
      {
 
@@ -217,23 +218,26 @@ int main() {
                 cout << i+1 << " nuskaitymas"<<endl;
 
         auto Nuskaitymo_start = chrono::high_resolution_clock::now();
+
         nuskaitymas(failas, grupe);
+
         auto Nuskaitymo_end = chrono::high_resolution_clock::now();
         chrono::duration<double> Nuskaitymo_laikas = Nuskaitymo_end - Nuskaitymo_start;
         cout <<kiekis<<" irasu nuskaitymas uztruko: "<< Nuskaitymo_laikas.count() << " s;" << endl;
 
 
         auto Rusiavimas_start = chrono::high_resolution_clock::now();
-        pal_pav(grupe,rus_index);
+        pal_pav_list(grupe,rus_index);
         auto Rusiavimas_end = chrono::high_resolution_clock::now();
         chrono::duration<double> Rusiavimas_laikas = Rusiavimas_end - Rusiavimas_start;
         cout <<kiekis<<" irasu rusiavimas pagal " << rus_index << " uztruko: "<< Rusiavimas_laikas.count() << " s;" << endl;
 
 
+
         auto Padalinimo_start = chrono::high_resolution_clock::now();
-        vector<studentas> vargsiukai;
-        vector<studentas> kietiakai;
-//        padalinimas(grupe, kietiakai, vargsiukai);
+        list<studentas> vargsiukai;
+        list<studentas> kietiakai;
+        padalinimas(grupe, kietiakai, vargsiukai);
         auto Padalinimo_end = chrono::high_resolution_clock::now();
         chrono::duration<double> Padalinimo_laikas = Padalinimo_end - Padalinimo_start;
         cout <<kiekis<<" irasu surusiavimas i dvi grupes uztruko: "<< Padalinimo_laikas.count() << " s;" << endl;
@@ -258,9 +262,9 @@ int main() {
 
 
             //Isvedame duomenis
-            //isvedimas(grupe, gen, ats,rus_index);
-            }
+            isvedimas_list(grupe, gen, ats,rus_index);
 
+            }
 
             break; // Iseiname is ciklo, jei nesugavome nieko su "try"
         }
@@ -272,6 +276,6 @@ int main() {
     return 0;
 
     }
-*/
+
 
 }

@@ -28,6 +28,22 @@ struct studentas
         float galutinis;
     };
 
+// Define the ContainerTypeTrait template
+template <typename S>
+struct ContainerTypeTrait;
+
+// Specialize it for vector<studentas>
+template <>
+struct ContainerTypeTrait<vector<studentas>> {
+    using type = vector<int>;
+};
+
+// Specialize it for list<studentas>
+template <>
+struct ContainerTypeTrait<list<studentas>> {
+    using type = list<int>;
+};
+
 
 
 template <class I>
@@ -63,37 +79,41 @@ I ivesk(int stud_sk, std::string gen) {
 
 
 
-template<class S>
-void skaiciavimas(S &grupe, studentas &temp)
-{
-
-    // Skaiciuojame vidurki
+template <typename S>
+void skaiciavimas(S &grupe, studentas &temp) {
     double suma = 0;
-    for (int i = 0; i < temp.paz.size(); i++)
-        {
-            suma += temp.paz[i];
-        }
+
+    for (int i = 0; i < temp.paz.size(); i++) {
+        suma += temp.paz[i];
+    }
 
     temp.vid = 0.4 * (suma / temp.paz.size()) + 0.6 * temp.egz;
 
-    // Sukuriame vektoriu su visais gautais pazymiais ir egzaminu
-    vector<int> visipaz = temp.paz; // vektorius saugos int tipo objektus, vadinsis visipaz, ji priliginam temp.paz (reiskaisi cia desim pazymius)
+    // Use the type trait to deduce the container type
+    typename ContainerTypeTrait<S>::type visipaz;
+
+    for (int i : temp.paz) {
+        visipaz.push_back(i);
+    }
+
     visipaz.push_back(temp.egz);
 
+// Skaiciuojame mediana
+double med = 0.0;
+typename ContainerTypeTrait<S>::type::iterator it = visipaz.begin();
+std::advance(it, visipaz.size() / 2);
 
-    //Skaiciuojame mediana
-    double med = 0.0;
-    sort(visipaz.begin(), visipaz.end());
-    if (visipaz.size() % 2 == 0)
-        {
-            med = (visipaz[(visipaz.size() / 2) - 1] + visipaz[visipaz.size() / 2]) / 2.0;
-        }
-    else
-        {
-            med = visipaz[visipaz.size() / 2];
-        }
+if (visipaz.size() % 2 == 0)
+{
+    auto prev_it = std::prev(it);
+    med = (*prev_it + *it) / 2.0;
+}
+else
+{
+    med = *it;
+}
 
-    temp.med = med;
+temp.med = med;
 
     grupe.push_back(temp);
 }
@@ -104,16 +124,34 @@ void skaiciavimas(S &grupe, studentas &temp)
 
 
 
-
-
 void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index);
+void isvedimas_list(list<studentas> &grupe, string gen, string ats,string rus_index);
+bool palyginimas(studentas &a, studentas &b, string rus_index);
 template <class P>
-void pal_pav(P &grupe, string rus_index);
+void pal_pav(P &grupe, string rus_index) {
+    sort(grupe.begin(), grupe.end(), [rus_index](studentas &a, studentas &b) {
+        return palyginimas(a, b, rus_index);
+    });
+}
+template <class P>
+void pal_pav_list(P &grupe, string rus_index) {
+    grupe.sort([rus_index](studentas &a, studentas &b) {
+        return palyginimas(a, b, rus_index);
+    });
+}
+
 void gen_failas(int stud_gen_sk, int stud_gen_nd);
-void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& failo_pav);
-void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, vector<studentas> &grupe);
-void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, vector<studentas>& vargsiukai);
+//void padalinto_sapuzdinimas(const vector<studentas>& studentai, const string& failo_pav);
+template <class S>
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, S &grupe);
+//void padalinimas(const vector<studentas>& grupe,vector<studentas>& kietiakai, vector<studentas>& vargsiukai);
 int kiek_sk(const string& failas);
+
+
+
+
+
+
 
 
     template <class T>
@@ -157,6 +195,73 @@ void nuskaitymas(const string& failas, T& grupe) {
     in.close();
 }
 
+
+
+
+
+template <class S>
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, S &grupe) {
+
+    temp.vid = static_cast<float>(suma)/paz_sk;
+
+
+    // Mediana
+    sort(temp.paz.begin(), temp.paz.end());
+
+    double mediana = 0.0;
+    int dydis = temp.paz.size();
+    if (dydis % 2 == 0) {
+        temp.med = static_cast<double>(temp.paz[(dydis - 1) / 2] + temp.paz[dydis / 2]) / 2.0;
+    } else {
+        temp.med = temp.paz[dydis / 2];
+    }
+
+    //Skaiciuojam galutinius balus
+    temp.galutinis = static_cast<float>(temp.vid*0.4 + temp.egz*0.6);
+
+
+    grupe.push_back(temp);
+    temp.paz.clear();
+    suma = 0;
+}
+
+
+
+
+template <class P>
+void padalinimas(const P& grupe,P& kietiakai, P& vargsiukai) {
+
+    for (auto &a: grupe) {
+        if (a.galutinis >= 5) {
+            kietiakai.push_back(a);
+        } else {
+            vargsiukai.push_back(a);
+        }
+    }
+}
+
+
+
+
+
+        ///Spauzdinimo funkcija vargsiuku ir kietiaku failams
+        template <class P>
+void padalinto_sapuzdinimas(const P& studentai, const string& failo_pav) {
+    ofstream out(failo_pav);
+
+    out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis" << endl;
+    out << endl;
+
+    for (const auto& stud : studentai) {
+        out << left << setw(20) << stud.pav << setw(20) << stud.var << setw(20) << fixed << setprecision(2) << stud.galutinis << endl;
+
+
+    }
+
+
+    out.close();
+    //cout << "Duomenys įrašyti į failą '" << failo_pav << "'" << endl;
+}
 
 
 
