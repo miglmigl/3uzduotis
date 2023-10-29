@@ -1,5 +1,9 @@
 # Tyrimas
 
+*Lyginame programos veikimo greitį su vector ir list konteineriu:*
+
+
+
 Vector konteinerio atveju
 
 |                                               |  1000   |  10000  | 100000 | 1000000 | 10000000  |
