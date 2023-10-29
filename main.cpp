@@ -33,6 +33,8 @@ int main() {
                     cout << "Kiek studentu yra kurse? ";
                     cin >> stud_sk;
                     vector<studentas> grupe = ivesk<vector<studentas>>(stud_sk, gen);
+                    cout<<"Grupės objekto saugojimo atmintyje adresas: "<<&grupe<<endl;
+                            for(auto &student: grupe) {cout<<"Studento objekto saugojimo atmintyje adresas: "<<&student<<endl;}
 
                     // Tikriname ar pasirinkta tarp V ir M
                     while (ats != "M" && ats != "V") {
@@ -54,6 +56,8 @@ int main() {
         cin >> stud_gen_sk;
         cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?\n";
         cin >> stud_gen_nd;
+
+        for (int i = 0; i < 5; i++){
                 auto Generavimo_start = chrono::high_resolution_clock::now();
                 vector<studentas> studentai;
                 gen_failas(stud_gen_sk, stud_gen_nd);
@@ -61,6 +65,7 @@ int main() {
                 chrono::duration<double> Generavimo_laikas = Generavimo_end - Generavimo_start;
         cout <<to_string(stud_gen_sk)<<" irasu generavimas uztruko: "<< Generavimo_laikas.count() << " s;" << endl;
         cout << "Duomenys irasyti i faila 'Kursiokai" << stud_gen_sk << ".txt'" << endl;
+        }
 
      }
 
@@ -164,6 +169,8 @@ int main() {
         cout << "Kiek studentu yra kurse? ";
         cin >> stud_sk;
         list<studentas> grupe = ivesk<list<studentas>>(stud_sk, gen);
+        cout<<"Grupės objekto saugojimo atmintyje adresas: "<<&grupe<<endl;
+            for(auto &student: grupe) {cout<<"Studento objekto saugojimo atmintyje adresas: "<<&student<<endl;}
 
         // Tikriname ar pasirinkta tarp V ir M
         while (ats != "M" && ats != "V") {
@@ -175,7 +182,7 @@ int main() {
 
             }
         }
-        //isvedimas(grupe, gen, ats,rus_index);
+        isvedimas_list(grupe, gen, ats,rus_index);
     }
 
      else if (gen == "G")
@@ -186,6 +193,7 @@ int main() {
         cin >> stud_gen_sk;
         cout << "Kiek tarpiniu namu darbu pazymiu vesite kiekviem studentui?\n";
         cin >> stud_gen_nd;
+        for (int i = 0; i < 5; i++){
                 auto Generavimo_start = chrono::high_resolution_clock::now();
                 list<studentas> studentai;
                 gen_failas(stud_gen_sk, stud_gen_nd);
@@ -195,6 +203,7 @@ int main() {
 
 
             cout << "Duomenys irasyti i faila 'Kursiokai" << stud_gen_sk << ".txt'" << endl;
+        }
 
      }
 

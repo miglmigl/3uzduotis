@@ -104,20 +104,20 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index
             // Rusiuojame pagal pavardes
             rus_index="P";
             pal_pav(grupe,rus_index);
-
+        cout<<endl<<"    Grupės objekto saugojimo atmintyje adresas: "<<&grupe<<"    "<<endl<<endl;
         cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
         if (ats == "M") {
-                cout << "Galutinis (Med.)" << endl;
-                cout << "--------------------------------------------------------\n";
+                cout << "Galutinis (Med.)" << setw(80) << "Studento objekto saugojimo atmintyje adresass"<< endl;
+                 cout << "--------------------------------------------------------------------------------------------------------------\n";
                 for (auto &a : grupe) {
-                    cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.med << endl;
+                    cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.med <<setw(80)<< &a << endl;
                     }
                         } else if (ats == "V") {
-            cout << "Galutinis (Vid.)" << endl;
-            cout << "--------------------------------------------------------\n";
+            cout << "Galutinis (Vid.)" << setw(80) << "Studento objekto saugojimo atmintyje adresass"<< endl;
+             cout << "--------------------------------------------------------------------------------------------------------------\n";
             // Imame po elementa is "grupe" vektoriaus (po studenta)
             for (auto &a : grupe) {
-                cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid << endl;
+                cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid <<setw(80)<< &a << endl;
             }
         }
         } else if (gen == "F") {
@@ -141,31 +141,33 @@ void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index
 
 
 void isvedimas_list(list<studentas> &grupe, string gen, string ats,string rus_index) {
-    if (gen == "T")
-        {
+    if (gen == "T"){
             // Rusiuojame pagal pavardes
             rus_index = "P";
             pal_pav_list(grupe,rus_index);
-
-        cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
-        if (ats == "M") {
-                cout << "Galutinis (Med.)" << endl;
-                cout << "--------------------------------------------------------\n";
+            cout<<endl<<"    Grupės objekto saugojimo atmintyje adresas: "<<&grupe<<"    "<<endl<<endl;
+            cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
+            if (ats == "M") {
+                cout << "Galutinis (Med.)" << setw(80) << "Studento objekto saugojimo atmintyje adresass"<< endl;
+                cout << "--------------------------------------------------------------------------------------------------------------\n";
                 for (auto &a : grupe) {
-                    cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.med << endl;
+                    cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.med <<setw(80)<< &a << endl;
                     }
-                        } else if (ats == "V") {
-            cout << "Galutinis (Vid.)" << endl;
-            cout << "--------------------------------------------------------\n";
-            // Imame po elementa is "grupe" vektoriaus (po studenta)
-            for (auto &a : grupe) {
-                cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid << endl;
             }
+            else if (ats == "V") {
+                cout << "Galutinis (Vid.)" << setw(80) <<"Studento objekto saugojimo atmintyje adresass"<< endl;
+                cout << "--------------------------------------------------------------------------------------------------------------\n";
+                // Imame po elementa is "grupe" vektoriaus (po studenta)
+                for (auto &a : grupe) {
+                cout << left << setw(20) << a.pav << setw(20) << a.var << setw(20) << fixed << setprecision(2) << a.vid <<setw(80)<< &a << endl;
+                }
+            }
+
         }
-        } else if (gen == "F") {
+    else if (gen == "F") {
          ofstream out ("rezultatai.txt");
         out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
-        out << "-----------------------------------------------------------------------\n";
+         cout << "--------------------------------------------------------------------------------------------------------------\n";
 
         // Rusiuojame pagal pavardes
         pal_pav_list(grupe,rus_index );

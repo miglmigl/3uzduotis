@@ -87,7 +87,10 @@ I ivesk(int stud_sk, std::string gen) {
     }
 
     return grupe;
+
 }
+
+
 
 
 
@@ -102,7 +105,7 @@ void skaiciavimas(S &grupe, studentas &temp) {
 
     temp.vid = 0.4 * (suma / temp.paz.size()) + 0.6 * temp.egz;
 
-    // Use the type trait to deduce the container type
+    // Nustatome, kokį konteinerio tipą imti
     typename ContainerTypeTrait<S>::type visipaz;
 
     for (int i : temp.paz) {
@@ -125,8 +128,6 @@ void skaiciavimas(S &grupe, studentas &temp) {
     }
 
 temp.med = med;
-
-    grupe.push_back(temp);
 }
 
 
