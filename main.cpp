@@ -1,4 +1,3 @@
-
 #include "mylib.h"
 
 
@@ -12,7 +11,7 @@ int main() {
 
     cout << "Norite atlikti veiksmus su vector<studentas> (V) ar list <studentas> (L)" << endl;
     cin >> struktura;
-
+    
     if (struktura == "V")
     {
         vector<studentas> grupe;
@@ -70,7 +69,7 @@ int main() {
 
                 }
 
-
+         
                 else if (gen == "F") {
                     string failas;
                     system("dir *.txt");
@@ -103,7 +102,8 @@ int main() {
                         auto Padalinimo_start = chrono::high_resolution_clock::now();
                         vector<studentas> vargsiukai;
                         vector<studentas> kietiakai;
-                        padalinimas(grupe, kietiakai, vargsiukai);
+                        padalinimas_v(grupe, vargsiukai);
+                        kietiakai = grupe;
                         auto Padalinimo_end = chrono::high_resolution_clock::now();
                         chrono::duration<double> Padalinimo_laikas = Padalinimo_end - Padalinimo_start;
                         cout << kiekis << " irasu surusiavimas i dvi grupes uztruko: " << Padalinimo_laikas.count() << " s;" << endl;
@@ -122,7 +122,7 @@ int main() {
                         chrono::duration<double> Vargsiuku_sp_laikas = Vargsiuku_sp_end - Vargsiuku_sp_start;
                         cout << kiekis << " irasu vargsiuku irasymas i faila uztruko: " << Vargsiuku_sp_laikas.count() << " s;" << endl;
 
-                        float visas_laikas = Nuskaitymo_laikas.count() + Rusiavimas_laikas.count() + Padalinimo_laikas.count() + Kietiaku_sp_laikas.count() + Vargsiuku_sp_laikas.count();
+                        double visas_laikas = Nuskaitymo_laikas.count() + Rusiavimas_laikas.count() + Padalinimo_laikas.count() + Kietiaku_sp_laikas.count() + Vargsiuku_sp_laikas.count();
                         cout << kiekis << " irasu testo laikas: " << visas_laikas << " s;" << endl;
 
                         grupe.clear();
@@ -238,11 +238,12 @@ int main() {
                         cout << kiekis << " irasu rusiavimas pagal " << rus_index << " uztruko: " << Rusiavimas_laikas.count() << " s;" << endl;
 
 
-
+                        
                         auto Padalinimo_start = chrono::high_resolution_clock::now();
                         list<studentas> vargsiukai;
                         list<studentas> kietiakai;
-                        padalinimas(grupe, kietiakai, vargsiukai);
+                        padalinimas_l(grupe, vargsiukai);
+                        kietiakai = grupe;
                         auto Padalinimo_end = chrono::high_resolution_clock::now();
                         chrono::duration<double> Padalinimo_laikas = Padalinimo_end - Padalinimo_start;
                         cout << kiekis << " irasu surusiavimas i dvi grupes uztruko: " << Padalinimo_laikas.count() << " s;" << endl;
@@ -261,14 +262,14 @@ int main() {
                         chrono::duration<double> Vargsiuku_sp_laikas = Vargsiuku_sp_end - Vargsiuku_sp_start;
                         cout << kiekis << " irasu vargsiuku irasymas i faila uztruko: " << Vargsiuku_sp_laikas.count() << " s;" << endl;
 
-                        float visas_laikas = Nuskaitymo_laikas.count() + Rusiavimas_laikas.count() + Padalinimo_laikas.count() + Kietiaku_sp_laikas.count() + Vargsiuku_sp_laikas.count();
+                        double visas_laikas = Nuskaitymo_laikas.count() + Rusiavimas_laikas.count() + Padalinimo_laikas.count()  + Kietiaku_sp_laikas.count() + Vargsiuku_sp_laikas.count();
                         cout << kiekis << " irasu testo laikas: " << visas_laikas << " s;" << endl;
 
                         grupe.clear();
 
                     }
                     //Isvedame duomenis
-                    isvedimas_list(grupe, gen, ats, rus_index);
+                    //isvedimas_list(grupe, gen, ats, rus_index);
                 }
 
                 break; // Iseiname is ciklo, jei nesugavome nieko su "try"

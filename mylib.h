@@ -19,14 +19,14 @@
 
 using namespace std;
 struct studentas
-{
-    string var, pav;
-    vector <int> paz;
-    int egz;
-    float vid;
-    float med;
-    float galutinis;
-};
+    {
+        string var, pav;
+        vector <int> paz;
+        int egz{};
+        float vid{};
+        float med{};
+        float galutinis{};
+    };
 
 // Aibūdiname ContainerTypeTrait šabloną
 template <typename S>
@@ -47,9 +47,9 @@ struct ContainerTypeTrait<list<studentas>> {
 
 
 
-void isvedimas(vector<studentas>& grupe, string gen, string ats, string rus_index);
-void isvedimas_list(list<studentas>& grupe, string gen, string ats, string rus_index);
-bool palyginimas(studentas& a, studentas& b, string rus_index);
+void isvedimas(vector<studentas> &grupe, string gen, string ats,string rus_index);
+void isvedimas_list(list<studentas> &grupe, string gen, string ats,string rus_index);
+bool palyginimas(studentas &a, studentas &b, string rus_index);
 int kiek_sk(const string& failas);
 void gen_failas(int stud_gen_sk, int stud_gen_nd);
 
@@ -96,7 +96,7 @@ I ivesk(int stud_sk, std::string gen) {
 
 
 template <typename S>
-void skaiciavimas(S& grupe, studentas& temp) {
+void skaiciavimas(S &grupe, studentas &temp) {
     double suma = 0;
 
     for (int i = 0; i < temp.paz.size(); i++) {
@@ -119,31 +119,31 @@ void skaiciavimas(S& grupe, studentas& temp) {
     typename ContainerTypeTrait<S>::type::iterator it = visipaz.begin();
     std::advance(it, visipaz.size() / 2);
 
-    if (visipaz.size() % 2 == 0) {
-        auto prev_it = std::prev(it);
-        med = (*prev_it + *it) / 2.0;
+    if (visipaz.size() % 2 == 0){
+    auto prev_it = std::prev(it);
+    med = (*prev_it + *it) / 2.0;
     }
-    else {
-        med = *it;
+    else{
+    med = *it;
     }
 
-    temp.med = med;
+temp.med = med;
 }
 
 
 
 
 template <class P>
-void pal_pav(P& grupe, string rus_index) {
-    sort(grupe.begin(), grupe.end(), [rus_index](studentas& a, studentas& b) {
+void pal_pav(P &grupe, string rus_index) {
+    sort(grupe.begin(), grupe.end(), [rus_index](studentas &a, studentas &b) {
         return palyginimas(a, b, rus_index);
-        });
+    });
 }
 template <class P>
-void pal_pav_list(P& grupe, string rus_index) {
-    grupe.sort([rus_index](studentas& a, studentas& b) {
+void pal_pav_list(P &grupe, string rus_index) {
+    grupe.sort([rus_index](studentas &a, studentas &b) {
         return palyginimas(a, b, rus_index);
-        });
+    });
 }
 
 
@@ -151,7 +151,7 @@ void pal_pav_list(P& grupe, string rus_index) {
 
 
 template <class S>
-void skaiciavimas_2(int& suma, int paz_sk, studentas& temp, S& grupe);
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, S &grupe);
 
 
 
@@ -183,15 +183,15 @@ void nuskaitymas(const string& failas, T& grupe) {
     while (in >> temp.var >> temp.pav) {
 
         for (int i = 0; i < paz_sk; i++) {
-            in >> laik_kint;
+        in >> laik_kint;
             temp.paz.push_back(laik_kint);
-            suma += laik_kint;
+            suma+=laik_kint;
         }
 
-        in >> temp.egz;
-        getline(in, praleidziam);
+    in >> temp.egz;
+    getline(in, praleidziam);
 
-        skaiciavimas_2(suma, paz_sk, temp, grupe);
+        skaiciavimas_2(suma,paz_sk,temp,grupe);
         m++;
     }
 
@@ -203,9 +203,9 @@ void nuskaitymas(const string& failas, T& grupe) {
 
 
 template <class S>
-void skaiciavimas_2(int& suma, int paz_sk, studentas& temp, S& grupe) {
+void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, S &grupe) {
 
-    temp.vid = static_cast<float>(suma) / paz_sk;
+    temp.vid = static_cast<float>(suma)/paz_sk;
 
 
     // Mediana
@@ -220,7 +220,7 @@ void skaiciavimas_2(int& suma, int paz_sk, studentas& temp, S& grupe) {
     }
 
     //Skaiciuojam galutinius balus
-    temp.galutinis = static_cast<float>(temp.vid * 0.4 + temp.egz * 0.6);
+    temp.galutinis = static_cast<float>(temp.vid*0.4 + temp.egz*0.6);
 
 
     grupe.push_back(temp);
@@ -231,24 +231,41 @@ void skaiciavimas_2(int& suma, int paz_sk, studentas& temp, S& grupe) {
 
 
 
-template <class P>
-void padalinimas(const P& grupe, P& kietiakai, P& vargsiukai) {
 
-    for (auto& a : grupe) {
-        if (a.galutinis >= 5) {
-            kietiakai.push_back(a);
+
+template <class P>
+void padalinimas_l(P& grupe, P& vargsiukai) {
+    grupe.remove_if([&](studentas& a) {
+        if (a.galutinis < 5) {
+            vargsiukai.push_back(a);
+            return true;  //isimame a is grupes
         }
         else {
-            vargsiukai.push_back(a);
+            return false;  // paliekame a grupeje
         }
-    }
+        });
+}
+
+
+template <class P>
+void padalinimas_v(P& grupe, P& vargsiukai) {
+    grupe.erase(std::remove_if(grupe.begin(), grupe.end(), [&](const studentas& a) {
+        if (a.galutinis < 5) {
+            vargsiukai.push_back(a);
+            return true;
+        }
+        return false;  
+        }), grupe.end());
 }
 
 
 
 
 
-///Spauzdinimo funkcija vargsiuku ir kietiaku failams
+
+
+
+        ///Spauzdinimo funkcija vargsiuku ir kietiaku failams
 template <class P>
 void padalinto_sapuzdinimas(const P& studentai, const string& failo_pav) {
     ofstream out(failo_pav);
@@ -268,4 +285,3 @@ void padalinto_sapuzdinimas(const P& studentai, const string& failo_pav) {
 
 
 #endif //MYLIB_H_INCLUDED
-#pragma once
