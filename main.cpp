@@ -102,14 +102,16 @@ int main() {
                         auto Padalinimo_start = chrono::high_resolution_clock::now();
                         vector<studentas> vargsiukai;
                         vector<studentas> kietiakai;
-                        padalinimas_v(grupe, vargsiukai);
+                        padalinimas(grupe, vargsiukai);
                         kietiakai = grupe;
                         auto Padalinimo_end = chrono::high_resolution_clock::now();
                         chrono::duration<double> Padalinimo_laikas = Padalinimo_end - Padalinimo_start;
-                        cout << kiekis << " irasu surusiavimas i dvi grupes uztruko: " << Padalinimo_laikas.count() << " s;" << endl;
+                        cout <</* kiekis << " irasu surusiavimas i dvi grupes uztruko: " << */Padalinimo_laikas.count() /* << " s;" */ << endl;
 
-                        pal_pav(vargsiukai, rus_index);
+
                         pal_pav(kietiakai, rus_index);
+                        pal_pav(vargsiukai, rus_index);
+
 
                         auto Kietiaku_sp_start = chrono::high_resolution_clock::now();
                         padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");
@@ -244,14 +246,14 @@ int main() {
                         auto Padalinimo_start = chrono::high_resolution_clock::now();
                         list<studentas> vargsiukai;
                         list<studentas> kietiakai;
-                        padalinimas_l(grupe, vargsiukai);
+                        padalinimas(grupe, vargsiukai);
                         kietiakai = grupe;
-                        pal_pav_list(vargsiukai, rus_index);
-                        pal_pav_list(kietiakai, rus_index);
                         auto Padalinimo_end = chrono::high_resolution_clock::now();
                         chrono::duration<double> Padalinimo_laikas = Padalinimo_end - Padalinimo_start;
-                        cout << kiekis << " irasu surusiavimas i dvi grupes uztruko: " << Padalinimo_laikas.count() << " s;" << endl;
+                        cout <</* kiekis << " irasu surusiavimas i dvi grupes uztruko: " << */Padalinimo_laikas.count() /* << " s;" */ << endl;
 
+                        pal_pav_list(kietiakai, rus_index);
+                        pal_pav_list(vargsiukai, rus_index);
 
                         auto Kietiaku_sp_start = chrono::high_resolution_clock::now();
                         padalinto_sapuzdinimas(kietiakai, "kietiakai.txt");

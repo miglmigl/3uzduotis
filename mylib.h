@@ -233,31 +233,18 @@ void skaiciavimas_2(int &suma, int paz_sk, studentas &temp, S &grupe) {
 
 
 
-template <class P>
-void padalinimas_l(P& grupe, P& vargsiukai) {
-        auto it = grupe.begin();
-        while (it != grupe.end()) {
-            if (it->galutinis < 5.0) {
-                vargsiukai.push_back(*it);
-                it = grupe.erase(it);
-            }
-            else {
-                ++it;
-            }
-        }
-    }
-
-
 
 template <class P>
-void padalinimas_v(P& grupe, P& vargsiukai) {
-    sort(grupe.rbegin(), grupe.rend(), [](const studentas& a, const studentas& b) {
-        return a.galutinis < b.galutinis;
+void padalinimas(P& grupe, P& vargsiukai) {
+    auto partitionPoint = std::partition(grupe.begin(), grupe.end(), [](const studentas& a) {
+        return a.galutinis < 5;
         });
-    while (!grupe.empty() && grupe.back().galutinis < 5.0) {
-        vargsiukai.push_back(grupe.back());
-        grupe.pop_back();
-    }
+
+    // Visus studentus, kuriu galutinis < 5 dedame i vargsiukus
+    vargsiukai.insert(vargsiukai.end(), grupe.begin(), partitionPoint);
+
+    // Is grupes istriname studentus, kurie buvo ideti i vargsiukus
+    grupe.erase(grupe.begin(), partitionPoint);
 }
 
 
