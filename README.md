@@ -18,7 +18,7 @@ Naudojant *struct* Studentas:
 |  Kietiakų failo spausdinimo vidutinis laikas      |  0,55 s | 5,41 s  |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,38 s | 3,75 s  |  
 |  *Bendrai užtrukta*                               |*2,07 s* |*20,95 s*| 
-|            *exe failo dydis*                      |                   |
+|  *exe failo dydis*                                |                   |
 
 
 
@@ -33,7 +33,7 @@ Naudojant *class* Studentas:
 |  Kietiakų failo spausdinimo vidutinis laikas      |  0,3 s  | 2,95s   |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,21 s | 2,07 s  |  
 |  *Bendrai užtrukta*                               |*1,47 s* |*14,8 s* | 
-|            *exe failo dydis*                      |                   |
+|  *exe failo dydis*                                |                   |
 
 Išvada: Iš tyrimo matyti, kad naudojant class Studentas viskas išskyrus nuskaitymą vyko greičiau nei naudojant struct Studentas.
 
