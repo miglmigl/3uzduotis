@@ -5,9 +5,9 @@
 Programa nuskaito, generuoja, leidžia įrašyti studentus/ jų failus.
 
 
-Laiko tyrimas su struct ir class Studentas vector konteinerio atveju:
+#Laiko tyrimas su struct ir class Studentas vector konteinerio atveju:
 
-Naudojant struct Studentas:
+Naudojant *struct* Studentas:
 
 |                                                   |  100000 | 1000000 | 
 | ------------------------------------------------- |:-------:|:-------:|
@@ -18,11 +18,11 @@ Naudojant struct Studentas:
 |  Kietiakų failo spausdinimo vidutinis laikas      |  0,55 s | 5,41 s  |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,38 s | 3,75 s  |  
 |  *Bendrai užtrukta*                               |*2,07 s* |*20,95 s*| 
+|            *exe failo dydis*                      |                   |
 
 
 
-
-Naudojant class Studentas:
+Naudojant *class* Studentas:
 
 |                                                   |  100000 | 1000000 | 
 | ------------------------------------------------- |:-------:|:-------:|
@@ -33,14 +33,15 @@ Naudojant class Studentas:
 |  Kietiakų failo spausdinimo vidutinis laikas      |  0,3 s  | 2,95s   |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,21 s | 2,07 s  |  
 |  *Bendrai užtrukta*                               |*1,47 s* |*14,8 s* | 
+|            *exe failo dydis*                      |                   |
 
 Išvada: Iš tyrimo matyti, kad naudojant class Studentas viskas išskyrus nuskaitymą vyko greičiau nei naudojant struct Studentas.
 
 
-Struct Studentas ir class Studentas versija tyrimas su optimizavimo flagais
+#Struct Studentas ir class Studentas laiko tyrimas su optimizavimo flagais
 
 
-Su class:
+Su *class*:
 
 
 
@@ -48,7 +49,7 @@ Išvada: Iš padarytų tyrimų matyta, kad flag O1 kūrė didžiausią exe fail�
 
 
 
-Su struct:
+Su *struct*:
 
 
 Išvada: 
