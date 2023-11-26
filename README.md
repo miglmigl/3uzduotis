@@ -55,7 +55,7 @@ Naudojant class Studentas O1:
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,15 s |  1,37 s |  
 |  *Bendrai užtrukta*                               |*0,84 s* |*8,13 s* | 
 
-90,5 KB (92 672 bytes)
+*exe failo dydis: *90,5 KB (92 672 bytes)
 
 Naudojant class Studentas O2:
 
@@ -69,7 +69,7 @@ Naudojant class Studentas O2:
 |  Vargšiukų failo spausdinimo vidutinis laikas     |   0.21 s |  1,33 s |  
 |  *Bendrai užtrukta*                               |*0,99 s*  |*7,69 s* | 
 
-93,0 KB (95 232 bytes)
+*exe failo dydis: *93,0 KB (95 232 bytes)
 
 Naudojant class Studentas O3:
 
@@ -83,7 +83,7 @@ Naudojant class Studentas O3:
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,13 s |  1,29 s |  
 |  *Bendrai užtrukta*                               |*0,72 s* |*7,4 s*  | 
 
-116 KB (118 784 bytes)
+*exe failo dydis: *116 KB (118 784 bytes)
 
 
 Išvada: Iš padarytų tyrimų matyta, kad flag O1 kūrė didžiausią exe failą, o flag O3 kūrė mažiuasią exe failą. Greičiausiai programa veikė su O3, lėčiausiai su O1 flagais.
@@ -92,7 +92,7 @@ Išvada: Iš padarytų tyrimų matyta, kad flag O1 kūrė didžiausią exe fail�
 
 Su *struct*:
 
-Naudojant struct Studentas O1:
+Naudojant struct Studentas su flag O1:
 
 |                                                   |  100000 | 1000000 | 
 | ------------------------------------------------- |:-------:|:-------:|
@@ -104,9 +104,9 @@ Naudojant struct Studentas O1:
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,14 s |  1,52 s |  
 |  *Bendrai užtrukta*                               |*0,77 s* |*8,00 s* | 
 
-93,5 KB (95 744 bytes)
+*exe failo dydis: *93,5 KB (95 744 bytes)
 
-Naudojant struct Studentas O2:
+Naudojant struct Studentas flag O2:
 
 |                                                   |  100000  | 1000000 | 
 | ------------------------------------------------- |:--------:|:-------:|
@@ -116,11 +116,11 @@ Naudojant struct Studentas O2:
 |  Failo išrūšiavimo vidutinis laikas               |   0,02 s | 0,22 s  |  
 |  Kietiakų failo spausdinimo vidutinis laikas      |   0,2  s | 2,07 s  |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |   0,14 s | 1,44 s  |  
-|  *Bendrai užtrukta*                               |*0,78 s*  |*8,02 s* | 
+|  *Bendrai užtrukta*                               |*0,78 s*  |*8,2 s* | 
 
-92,5 KB (94 720 bytes)
+*exe failo dydis: * 92,5 KB (94 720 bytes)
 
-Naudojant struct Studentas O3:
+Naudojant struct Studentas flag O3:
 
 |                                                   |  100000 | 1000000 | 
 | ------------------------------------------------- |:-------:|:-------:|
@@ -131,12 +131,11 @@ Naudojant struct Studentas O3:
 |  Kietiakų failo spausdinimo vidutinis laikas      |  0,2 s  |  2,0 s  |  
 |  Vargšiukų failo spausdinimo vidutinis laikas     |  0,14 s |  1,42 s |  
 |  *Bendrai užtrukta*                               |*0,75 s* |*7,66 s* | 
-|  *exe failo dydis*                                |       113 KB      |
+ *exe failo dydis: *  113 KB (116 224 bytes)
 
+Išvada:  Naudojant struct Studentas su flag O3 programos exe failas buvo didžiausias ir programa veikė greičiausiai, o su flag O2 programa veikė lėčiausiai ir jos exe failas buvo mažiausias.
 
-
-
-Išvada: 
+Taigi, pastebėjome, jog tiek su struct tiek su class Studentas programa greičiausiai veikė naudojant flag O3.
 
 
 
