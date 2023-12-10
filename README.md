@@ -3,12 +3,26 @@
 <img width="590" alt="image" src="https://github.com/miglmigl/v1.1/assets/144427943/15fbe296-8297-429c-9e6f-3a373136c9bd">
 
 Tai supaprastina duomenų įvedimui ir išvedimui skirtą kodą:
-Įvedimo atveju yra supaprastinama studento vardo ir pavardes įvedimo kodas:
+(Vietoj atskiro pavardės ir vardo įvedimo (pvz.: temp.setVar; temp.setPav) yra naudojamas įvesties persidengimo operatorius, kuris vardą ir pavardę įveda naudojant komandą: cin >> temp. Tokiu principu veikia ir iįvedimo persidengimo operatorius)
 
 
+<img width="471" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/ed5d7d9d-5a38-4771-984a-d81a31dd9b96">
+<img width="348" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/a1274986-0dcb-48f7-8d3c-e69fb8eb6840">
+<img width="503" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/fd22d5ae-0e69-4f57-ac22-c20cddf831a7">
+<img width="699" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3221f503-45e8-479f-a588-85e1db1b1a94">
+<img width="875" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/c746de9f-53ae-4928-a15f-6a52175e74ad">
+
+
+
+
+
+<br /><br />
+<br />
 **Taip pat įgyvendinta "Rule of three":**
 
 <img width="395" alt="image" src="https://github.com/miglmigl/v1.1/assets/144427943/538d5f6a-2273-4848-8876-c184ab88243d">
+
+
 
 
 Programoje pasirinkus R varinatą, pateikaima "Rule of three" demonstracija:
@@ -18,7 +32,8 @@ Ekrane išvedami studentams priskirti egzamino rezultatai, bei copy, copy prisky
 
 
 
-
+<br /><br />
+<br />
 
 
 # v1.1
