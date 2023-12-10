@@ -50,11 +50,8 @@ public:
         cout << "Suveikė Copy konstruktorius" << endl;
     }*/
 
-
-    /* Rule of three demonstracijai - atkomentuoti*/
-
     // Copy assignment operatorius
-   /* Studentas& operator=(const Studentas& other) {
+    /* Studentas& operator=(const Studentas& other) {
         // Tikrinam ar nepriskirta sau
         if (this != &other) {
             
@@ -70,11 +67,9 @@ public:
         return *this;
     }*/
 
-    /* Rule of three demonstracijai - atkomentuoti*/
-
     // Destruktorius
     ~Studentas() {
-        //std::cout << "Suveikė destruktorius " << std::endl;
+       // std::cout << "Suveikė destruktorius " << std::endl;
     }
 
     std::string getVar() const { return var_; }
@@ -96,10 +91,10 @@ public:
 
     //Įvesties operatorius
     friend std::istream& operator>>(std::istream& in, Studentas& a) {
-        std::string vard, pavr;
-        in >> vard >> pavr;
-        a.setVar(vard);
-        a.setPav(pavr);
+        std::string vardas, pavarde;
+        in >> vardas >> pavarde;
+        a.setVar(vardas);
+        a.setPav(pavarde);
         return in;
     }
 
@@ -233,24 +228,17 @@ void nuskaitymas(const std::string& failas, T& grupe) {
     paz_sk = (raidziu_sk - 6 - 7 - 3) / 2;
 
 
-    std::string var, pav;
     int egz;
 
-    var = temp.getVar();
-    pav = temp.getPav();
-    egz = temp.getEgz();
+  
 
-    while (in >> var >> pav) {
-        temp.setVar(var);
-        temp.setPav(pav);
-
-
+    while (in >> temp) {  // įvesties persidengimo operatorius
         for (int i = 0; i < paz_sk; i++) {
             in >> laik_kint;
             temp.setPaz(laik_kint);
             suma += laik_kint;
-
         }
+
 
 
         in >> egz;
@@ -310,11 +298,8 @@ I ivesk(int stud_sk, std::string gen) {
     for (int j = 0; j < stud_sk; j++) {
         Studentas temp;
         std::cout << "Iveskite varda ir pavarde: ";
-        //string c, b;
         std::cin >> temp; // įvesties persidengimo operatorius
 
-        //temp.setVar(b);
-        //temp.setPav(c);
 
         int suma = 0;
         if (gen == "T") {
@@ -335,7 +320,7 @@ I ivesk(int stud_sk, std::string gen) {
         }
         int paz_sk = temp.getPazSize();
         skaiciavimas_2(suma, paz_sk, temp, grupe);
-        //grupe.push_back(temp);
+        
     }
 
     return grupe;

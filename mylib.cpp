@@ -111,7 +111,7 @@ void gen_failas(int stud_gen_sk, int stud_gen_nd) {
         Studentas stud;
         stud.setVar("Vardas" + to_string(i));
         stud.setPav("Pavarde" + to_string(i));
-        out << left << setw(20) << stud.getVar() << setw(20) << stud.getPav();
+        out << stud;                             //pritaikytas išvesties operatorius
         stud.setEgz(rand_score(gen));
 
         double suma = 0;
