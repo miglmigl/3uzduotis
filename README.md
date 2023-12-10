@@ -2,14 +2,20 @@
 **Šioje dalyje buvo sukurti įvesties ir išvesties operatoriai Studento klasei:**
 <img width="590" alt="image" src="https://github.com/miglmigl/v1.1/assets/144427943/15fbe296-8297-429c-9e6f-3a373136c9bd">
 
-Jų dėka kodas yra lengviau skaitomas.
+Tai supaprastina duomenų įvedimui ir išvedimui skirtą kodą:
+Įvedimo atveju yra supaprastinama studento vardo ir pavardes įvedimo kodas:
+
 
 **Taip pat įgyvendinta "Rule of three":**
 
 <img width="395" alt="image" src="https://github.com/miglmigl/v1.1/assets/144427943/538d5f6a-2273-4848-8876-c184ab88243d">
 
 
-Programoje pasirinkus R varinatą, pateikaima "Rule of three" demonstracija.
+Programoje pasirinkus R varinatą, pateikaima "Rule of three" demonstracija:
+<img width="854" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/be16e65d-2c67-4767-a106-8acd88351ab5">
+
+Ekrane išvedami studentams priskirti egzamino rezultatai, bei copy, copy priskyrimo operatorių ir destruktoriaus suveikimą patvirtinantys sakiniai. 
+
 
 
 
