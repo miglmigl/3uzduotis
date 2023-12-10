@@ -4,12 +4,12 @@
 
 Jų dėka kodas yra lengviau skaitomas.
 
-**Taip pat įgyvendinta Rule of three:**
+**Taip pat įgyvendinta "Rule of three":**
 
 <img width="395" alt="image" src="https://github.com/miglmigl/v1.1/assets/144427943/538d5f6a-2273-4848-8876-c184ab88243d">
 
 
-Programoje pasirinkus R varinatą, pateikaima jos demonstracija.
+Programoje pasirinkus R varinatą, pateikaima "Rule of three" demonstracija.
 
 
 
