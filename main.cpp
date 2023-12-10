@@ -18,17 +18,35 @@ int main() {
 
         while (true) {
             try {
-                cout << "Norite patys vesti pazymius ir egzamino rezultata (T), generuoti automatiskai (G), ar nuskaityti is failo(F)? T/G/F? " << endl;
+                cout << "Norite patys vesti pazymius ir egzamino rezultata (T), generuoti automatiskai (G), nuskaityti is failo(F), pademostruoti Trijų taisyklę (Rule of three)? T/G/F/R? " << endl;
                 cin >> gen;
 
                 // Tikriname ar irasytas gen yra T, G arba F
-                if (gen != "T" && gen != "G" && gen != "F") {
+                if (gen != "T" && gen != "G" && gen != "F" && gen != "R") {
                     throw invalid_argument("Neteisinga ivestis. Iveskite T, G arba F.");
                 }
 
 
+                if (gen == "R") {
+                    
+                        Studentas s1;
+                        s1.setEgz(100);
+                        std::cout << "Pirmo studento įvertinimas: " << s1.getEgz() << endl;
+                        auto s2{ s1 }; // Copy constructor
+                        std::cout << "Antro studento įvertinimas: " << s2.getEgz() << endl;
+                        Studentas s3;
+                        s3.setEgz(92);
+                        std::cout << "Trečio studento įvertinimas: " << s3.getEgz() << endl;
+                        s3 = s2; // Copy 
+                        std::cout << "Trečio studento įvertinimas: " << s3.getEgz() << endl;
+                        return 0;
+                    } // Destruktorius iškviečiamas čia
+                
+                
+                    
 
-                if (gen == "T") {
+
+                else if (gen == "T") {
                     cout << "Kiek studentu yra kurse? ";
                     cin >> stud_sk;
                     vector<Studentas> grupe = ivesk<vector<Studentas>>(stud_sk, gen);
@@ -155,24 +173,38 @@ int main() {
     /// Su list<studentas>
 
 
-    else if (struktura == "L")
-    {
+    else if (struktura == "L") {
         list<Studentas> grupe;
 
 
         while (true) {
             try {
-                cout << "Norite patys vesti pazymius ir egzamino rezultata (T), generuoti automatiskai (G), ar nuskaityti is failo(F)? T/G/F? " << endl;
+                cout << "Norite patys vesti pazymius ir egzamino rezultata (T), generuoti automatiskai (G), nuskaityti is failo(F), pademostruoti Trijų taisyklę (Rule of three)? T/G/F/R? " << endl;
                 cin >> gen;
 
                 // Tikriname ar irasytas gen yra T, G arba F
-                if (gen != "T" && gen != "G" && gen != "F") {
+                if (gen != "T" && gen != "G" && gen != "F" && gen != "R") {
                     throw invalid_argument("Neteisinga ivestis. Iveskite T, G arba F.");
                 }
 
 
+                if (gen == "R") {
+                    Studentas s1;
+                    s1.setEgz(100);
+                    std::cout << "Pirmo studento įvertinimas: " << s1.getEgz() << endl;
+                    auto s2{ s1 }; // Copy konstruktorius
+                    std::cout << "Antro studento įvertinimas: " << s2.getEgz() << endl;
+                    Studentas s3;
+                    s3.setEgz(92);
+                    std::cout << "Trečio studento įvertinimas: " << s3.getEgz() << endl;
+                    s3 = s2; // Copy priskyrimo konstruktorius
+                    std::cout << "Trečio studento įvertinimas: " << s3.getEgz() << endl;
+                    return 0;
+                } // Destruktorius iškviečiamas čia
 
-                if (gen == "T") {
+
+
+                else if (gen == "T") {
                     cout << "Kiek studentu yra kurse? ";
                     cin >> stud_sk;
                     list<Studentas> grupe = ivesk<list<Studentas>>(stud_sk, gen);
@@ -291,6 +323,7 @@ int main() {
                 cerr << "Klaida: " << e.what() << endl;
             }
         }
+
         return 0;
 
     }

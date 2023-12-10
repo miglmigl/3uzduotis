@@ -40,7 +40,6 @@ void Studentas::sortPaz() {
 
 
 
-
 bool palyginimas(Studentas& a, Studentas& b, std::string rus_index) {
     if (rus_index == "P") {
         return a.getPav() < b.getPav();
@@ -141,58 +140,3 @@ void pal_pav_list(std::list<Studentas>& grupe, std::string rus_index) {
         return palyginimas(a, b, rus_index);
         });
 }
-
-
-
-
-
-
-
-
-
-/*
-void isvedimas_list(std::list<Studentas>& grupe, std::string gen, std::string ats, std::string rus_index) {
-    if (gen == "T") {
-        // Rusiuojame pagal pavardes
-        rus_index = "P";
-        pal_pav_list(grupe, rus_index);
-        std::cout << endl << "    Grupės objekto saugojimo atmintyje adresas: " << &grupe << "    " << endl << endl;
-        std::cout << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20);
-        if (ats == "M") {
-            std::cout << "Galutinis (Med.)" << setw(80) << "Studento objekto saugojimo atmintyje adresass" << endl;
-            std::cout << "--------------------------------------------------------------------------------------------------------------\n";
-            for (auto& a : grupe) {
-                cout << a << fixed << setprecision(2) << a.getMed() << setw(80) << &a << endl;
-            }
-        }
-        else if (ats == "V") {
-            std::cout << "Galutinis (Vid.)" << setw(80) << "Studento objekto saugojimo atmintyje adresass" << endl;
-            std::cout << "--------------------------------------------------------------------------------------------------------------\n";
-            // Imame po elementa is "grupe" vektoriaus (po studenta)
-            for (auto& a : grupe) {
-                cout << a << fixed << setprecision(2) << a.getVid() << setw(80) << &a << endl;
-            }
-        }
-
-    }
-    else if (gen == "F") {
-        ofstream out("rezultatai.txt");
-        out << left << setw(20) << "Pavarde" << setw(20) << "Vardas" << setw(20) << "Galutinis (Vid.)" << setw(20) << "Galutinis (Med.)" << endl;
-        std::cout << "--------------------------------------------------------------------------------------------------------------\n";
-
-        // Rusiuojame pagal pavardes
-        pal_pav_list(grupe, rus_index);
-
-        for (auto& a : grupe) {
-
-            out << a << fixed << setprecision(2) << a.getGalutinis() << setw(20) << fixed << setprecision(2) << a.getMed() << endl;
-        }
-        out.close();
-        //cout << "Isvesti duomenys irasyti i faila 'rezultatai.txt' "<< endl;
-    }
-}*/
-
-
-
-
-
