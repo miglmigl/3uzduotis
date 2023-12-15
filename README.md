@@ -10,7 +10,7 @@
 
 Matome, kad kai leidžiant programą pasirenkame Zmogaus klasės objekto kūrimo opciją, zmogaus objektas nėra sukuriamas, nes, kaip rodo kaidų sąrašas apačioje: abstrakčios klasės objekto negalime sukurti. Tačiau matome, kad Studento klasės objektą vistiek galime sukurti.
 <br />
-_ Studento klasė išvestinė (derived) iš Zmogaus ir palaiko 1.2 versijoje realizuotą trejų metodų taisyklę:_
+_Studento klasė išvestinė (derived) iš Zmogaus ir palaiko 1.2 versijoje realizuotą trejų metodų taisyklę:_
 <img width="1044" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/8ac104db-a4cc-425d-a50e-ecbc3f22c6a2">
 <img width="996" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/364498e2-cc35-4577-8b88-f6a44313964e">
 <img width="850" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/2e05f1a6-6d36-431f-80d9-53c726879212">
