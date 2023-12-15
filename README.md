@@ -1,6 +1,11 @@
 # v1.5
 **Šioje dalyje vietoj vienos klasės Studentas nuvu sukurtos dvi: bazinė (abstrakti) klasė - Zmogus, skirta bendrai aprašyti žmogų ir jos išvestinė (derived) klasė - Studentas.**
+ Realizuota abstrakti klasė Zmogus, jos objektų kūrimas negalimas:
+<img width="448" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/26d76639-39d3-42cd-9bc5-bc32b2ad01cd">
+<img width="1091" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3486fbd2-a71b-45a8-8418-1d85d56d9b40">
 
+<img width="856" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/8578b10a-268e-40f4-bc23-64f119b9effc">
+<img width="1081" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/88bb2978-44d5-48bb-8004-1ce9563a139c">
 
 
 <br /><br />
