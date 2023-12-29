@@ -4,13 +4,13 @@
 <br />
 Instrukcija:
 1. Atsisiųskite "Release katalogą".
-2. Savo kompiuteryje atsidarykite atsisiųstąjį katalogą (arba suraskite setup.exe failą savo darbalaukyje).
+2. Savo kompiuteryje atsidarykite atsisiųstąjį katalogą.
 3. Atidarykite dokumentą: "setup.exe".
 4. Iššokus lentelėms, kuriose yra prašoma daryti pokyčius jūsų kompiuteryje, leiskite.
 5. Iššoks lentelė leidžianti pasirinkti failo direktoriją. Automatiškai bus siūloma: C:\Program Files (x86)\VU\Vardenis-Pavardenis\ . Jei norite, kad failo direktorija būtų kita, spustelkite mygtuką "Browse" ir pasirinkite norimą direktoriją.
 6. Iššoks lentelė klausianti ar tikrai norite instaliuoti programą. Sutikite.
-7. Užsidarius visiems iššokusiems langams, kompiuteryje suraskite vietą, kurioje pasirinkote talpinti projektą (automatiškai buvo nustatyta: C:\Program Files (x86)\VU\Vardenis-Pavardenis\).
-8. Atidarykite kaatlogą Vardenis-Pavardenis.
+7. Užsidarius visiems iššokusiems langams, kompiuteryje suraskite vietą, kurioje pasirinkote talpinti projektą (automatiškai buvo nustatyta: C:\Program Files (x86)\VU\Vardenis-Pavardenis\), programą taip pat galite paleisti spustelėję ir ant programos failo esančio jūsų darbalaukyje.
+8. Atidarykite katlogą Vardenis-Pavardenis.
 9. Atidarykite failą "v1.5.exe".
 10. Jūsų bus paprašyta administratoriaus teisių, sutikite. (Jos reikalingos, kad programai būtų leidžiama kurti failus ir katalogus jūsų kompiuteryje).
 11. Programa pradės veikti, pasirinkite norimus parametrus.
