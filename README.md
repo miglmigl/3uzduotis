@@ -17,7 +17,16 @@ Instrukcija:
 
 
 <br />
+
 # v2.0
+**Šioje dalyje sukurta dokumentaciją panaudojant Doxygen.**
+<br />
+Doxygen dokumentacija yra prieinama atsisiuntus ir atvėrus htmpl.rar katalogą, jame paspaudus failą "index.html":
+<img width="533" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3b536704-f7b3-4d87-91c7-6533f412f840">
+
+Tada atsivers pagrindinis dokumentacijos puslapis.
+
+<br />
 
 **Taip pat sukurtas cmake CMakeLists.txt skirtas įdiegimui**
 
@@ -251,6 +260,12 @@ Parametrai, su kuriais buvo atlikti bandymai:
 <img width="1007" alt="image" src="https://github.com/miglmigl/1uzduotis/assets/144427943/46785d58-94c8-48de-8d6c-8efab2b6dd17">
 <img width="1025" alt="image" src="https://github.com/miglmigl/1uzduotis/assets/144427943/4c678d3f-07b0-434e-8cd7-bfddc782f4e1">
 <img width="1036" alt="image" src="https://github.com/miglmigl/1uzduotis/assets/144427943/d80a9898-c956-4f68-b96a-735f61673c54">
+
+
+
+
+
+
 
 
 
