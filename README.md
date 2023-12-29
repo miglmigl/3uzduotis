@@ -1,21 +1,25 @@
 # v2.0
 **Šioje dalyje sukurta dokumentaciją panaudojant Doxygen.**
+Doxygen dokumentacija yra prieinama atsisiuntus ir atvėrus htmpl.rar katalogą, jame paspaudus failą "index.html":
+<img width="533" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3b536704-f7b3-4d87-91c7-6533f412f840">
+
+Tada atsivers pagrindinis dokumentacijos puslapis.
+
 <br />
- _Realizuota abstrakti klasė Zmogus, jos objektų kūrimas negalimas:_
-<img width="448" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/26d76639-39d3-42cd-9bc5-bc32b2ad01cd">
-<img width="1091" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3486fbd2-a71b-45a8-8418-1d85d56d9b40">
+**Taip pat sukurtas  cmake CMakeLists.txt skirtas įdiegimui**
 
-<img width="856" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/8578b10a-268e-40f4-bc23-64f119b9effc">
-<img width="1081" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/88bb2978-44d5-48bb-8004-1ce9563a139c">
+ *Įdiegimo ir naudojimosi instukcija:*
+ 1. Atsisiųskite CMake programą.
+ 2. Atsisiųskite RUNMEE.bat, CMakeLists.txt, katalogą "src" ir "include", juos visusu sudedame į aplankalą (pvz.: "cmaketest").
+ 3. Atsidarome Windows PowerShell su administratoriaus privilegijomis.
+ 4. Komandų eilutėje pateikiame sakinį: cd "Jūsų cmaketest direktorija" (Nukopijuotike savo cmaketest kelią (path)).
+ 5. Užduodame komandą: cmake -S . -B .\build 
+ 6. Tęsiame komandų užklausas: cmake --build .\build
+ 7. Iš aplankalo "src" nusikopijuojame kursiokų failus į "debug" aplanką naudojant komandą: pvz. (copy src\Kursiokai10000.txt build\Debug)
+ 8. Uždarome konsolės langą
+ 9. Kompiuteryje randame "cmaketest" aplankalą, jame randame naują aplankalą "build", kuriame galime paleisti programą atveriant failą "v1.0.exe"
+ 10. Paleidę programą, pasirinkite norimus parametrus.
 
-Matome, kad kai leidžiant programą pasirenkame Zmogaus klasės objekto kūrimo opciją, zmogaus objektas nėra sukuriamas, nes, kaip rodo kaidų sąrašas apačioje: abstrakčios klasės objekto negalime sukurti. Tačiau matome, kad Studento klasės objektą vistiek galime sukurti.
-<br />
-_Studento klasė išvestinė (derived) iš Zmogaus ir palaiko 1.2 versijoje realizuotą trejų metodų taisyklę:_
-<img width="1044" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/8ac104db-a4cc-425d-a50e-ecbc3f22c6a2">
-<img width="996" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/364498e2-cc35-4577-8b88-f6a44313964e">
-<img width="850" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/2e05f1a6-6d36-431f-80d9-53c726879212">
-
-Matome, kad Studento klasė dabar yra išvestinė Zmogaus klasė, todėl atitinkamai buvo pakeistas Copy constructor, Copy asignment operator. Paleidus programą stebime Rule of three veikimą.
 
 
 
