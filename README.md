@@ -1,14 +1,18 @@
 # v2.0
 **Šioje dalyje sukurta dokumentaciją panaudojant Doxygen.**
+<br />
 Doxygen dokumentacija yra prieinama atsisiuntus ir atvėrus htmpl.rar katalogą, jame paspaudus failą "index.html":
 <img width="533" alt="image" src="https://github.com/miglmigl/2uzduotis/assets/144427943/3b536704-f7b3-4d87-91c7-6533f412f840">
 
 Tada atsivers pagrindinis dokumentacijos puslapis.
 
 <br />
-**Taip pat sukurtas  cmake CMakeLists.txt skirtas įdiegimui**
+
+**Taip pat sukurtas cmake CMakeLists.txt skirtas įdiegimui**
+
 
  *Įdiegimo ir naudojimosi instukcija:*
+ 
  1. Atsisiųskite CMake programą.
  2. Atsisiųskite RUNMEE.bat, CMakeLists.txt, katalogą "src" ir "include", juos visusu sudedame į aplankalą (pvz.: "cmaketest").
  3. Atsidarome Windows PowerShell su administratoriaus privilegijomis.
